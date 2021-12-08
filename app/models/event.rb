@@ -1,3 +1,4 @@
-class EventsController < ActiveRecord::Base
-    belongs_to :day
+class Event < ActiveRecord::Base
+    belongs_to :date_d
+
 end
