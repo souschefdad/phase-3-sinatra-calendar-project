@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Calendar.css"
 import {
   format,
@@ -18,6 +18,14 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 const Calendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [activeDate, setActiveDate] = useState(new Date());
+  const [date_ds, setDate_ds] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:9292/date_ds")
+    .then(resp => resp.json())
+    .then(setDate_ds)
+  },[])
+
   console.log(activeDate.toLocaleDateString("en-US"),
             selectedDate.toLocaleDateString("en-US"))
   const getHeader = () => {
@@ -59,6 +67,14 @@ const Calendar = () => {
     return <div className="weekContainer">{weekDays}</div>;
   };
 
+  const renderDateEvents = (date) => {
+    // we want a function that renders all the events from
+    // an instance of a date using a find_by(date:date) method
+    let d_selected = date_ds
+    console.log(d_selected)
+  }
+
+
   const generateDatesForCurrentWeek = (date, selectedDate, activeDate) => {
     let currentDate = date;
     const week = [];
@@ -72,6 +88,8 @@ const Calendar = () => {
           ${isSameDay(currentDate, new Date()) ? "today" : ""}`}
           onClick={() => {
             setSelectedDate(cloneDate);
+            renderDateEvents(selectedDate)
+            console.log("Click!")
           }}
         >
           {format(currentDate, "d")}

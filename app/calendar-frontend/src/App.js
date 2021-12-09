@@ -17,6 +17,11 @@ function App() {
     
     <div className="App">
 
+      
+
+      <Sidebar/>
+      <h1>Calendar</h1>
+      <Form/>
       {events.map((date_event) =>{
         return (
           <>
@@ -27,10 +32,6 @@ function App() {
           </>
         )
       })}
-
-      <Sidebar/>
-      <h1>Calendar</h1>
-      <Form/>
     </div>
   );
 }

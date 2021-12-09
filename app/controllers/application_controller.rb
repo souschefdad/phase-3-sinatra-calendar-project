@@ -3,7 +3,18 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
   get "/" do
-    { message: "Good luck with your project!" }.to_json
+    'Home'
+  end
+
+  get '/date_ds' do
+    all_date_ds = Date_d.all
+    all_date_ds.to_json
+  end
+
+  get '/events_list' do 
+    'Events'
+    all_events = Event.all
+    all_events.to_json
   end
 
 end
