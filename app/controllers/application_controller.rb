@@ -31,4 +31,10 @@ class ApplicationController < Sinatra::Base
     event.to_json(include: :date_d)
   end
 
+  delete '/event_list/:id' do
+    event = Event.find(params[:id])
+    event.destroy
+    {message: "deaded"}.to_json
+  end
+
 end
