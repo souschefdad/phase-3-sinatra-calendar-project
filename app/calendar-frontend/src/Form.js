@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Form.css'
+// import './Form.css'
 
 
 function Form({ eventsList, setEvents, date_ds }) {
@@ -13,8 +13,6 @@ function Form({ eventsList, setEvents, date_ds }) {
     function handleSubmit(e) {
         let dateArray = date_ds.filter(d => d.date === dateForm)
         let dateId = (dateArray.map(d => d.id))[0]
-        e.preventDefault();
-        debugger
         fetch("http://localhost:9292/event_list", {
             method: "POST",
             headers: {
@@ -38,18 +36,44 @@ function Form({ eventsList, setEvents, date_ds }) {
         <div className="form">
             <h2>Add an Event:</h2>
             <form onSubmit={handleSubmit}>
-                <span>Name:</span>
-                <input onChange={(e) => setName(e.target.value)} placeholder="name" />
-                <span>Country:</span>
-                <input onChange={(e) => setCountry(e.target.value)} placeholder="country" />
-                <span>Location:</span>
-                <input onChange={(e) => setLocation(e.target.value)} placeholder="location" />
-                <span>Type:</span>
-                <input onChange={(e) => setType(e.target.value)} placeholder="type" />
-                <span>Date:</span>
-                <input onChange={(e) => setDateForm(e.target.value)} placeholder="mm/dd/year" />
-                <button type="submit">Submit</button>
 
+                <div className='name'>
+                <span>Name: </span>
+                <input onChange={(e) => setName(e.target.value)} placeholder="name" />
+                </div>
+                
+                <br/>
+
+                <div className='country'>
+                <span>Country: </span>
+                <input onChange={(e) => setCountry(e.target.value)} placeholder="country" />
+                </div>
+                
+                <br/>
+
+                <div className='location'>
+                <span>Location: </span>
+                <input onChange={(e) => setLocation(e.target.value)} placeholder="location" />
+                </div>
+                
+                <br/>
+
+                <div className='type'>
+                <span>Type: </span>
+                <input onChange={(e) => setType(e.target.value)} placeholder="type" /></div>
+                
+                <br/>
+
+                <div className='date'> 
+                <span>Date: </span>
+                <input onChange={(e) => setDateForm(e.target.value)} placeholder="mm/dd/year" />
+                
+
+                </div>
+                
+                <br/>
+                <button type="submit"><b>Submit</b></button>
+                
             </form>
         </div>
     )
