@@ -1,14 +1,16 @@
-import {useState, useEffect} from 'react'
+import "./EventLister.css"
 
-function EventsLister({date_ds}) {
+import { useState, useEffect } from 'react'
+
+function EventsLister({ date_ds }) {
     const [events, setEvents] = useState([])
 
     useEffect(() => {
         fetch("http://localhost:9292/events_list")
-        .then(resp => resp.json())
-        // .then(console.log)
-        .then(setEvents)
-    },[])
+            .then(resp => resp.json())
+            // .then(console.log)
+            .then(setEvents)
+    }, [])
 
 
     function handleDelete(id) {
@@ -20,25 +22,33 @@ function EventsLister({date_ds}) {
     }
 
 
-return (
-    
-    <>
-    {events.map((date_event) =>{
-        let dateArray = date_ds.filter(d => d.id === date_event.date_d_id)
-            return (
-                <>
-                <h1>Name: {date_event.name}</h1>
-                <h2>Country: {date_event.country}</h2>
-                <h2>Location: {date_event.location}</h2>
-                <h2>Type: {date_event.holiday_type}</h2>
-                <h2>Date: {dateArray.map(e => e.date)}</h2>
-                <button onClick={() => handleDelete(date_event.id)}>X</button>
-                </>
-            )
-        })}
-    </>
-    
-)
+    return (
+        <>
+        <div className="event_container">
+            {events.map((date_event) => {
+                let dateArray = date_ds.filter(d => d.id === date_event.date_d_id)
+                return (
+                    
+                        <div className='event_cards'>
+                            <p><b>Name:</b> {date_event.name}</p>
+
+                            <p><b>Country:</b> {date_event.country}</p>
+
+                            <p><b>Location:</b> {date_event.location}</p>
+
+                            <p><b>Type:</b> {date_event.holiday_type}</p>
+
+                            <p><b>Date:</b> {dateArray.map(e => e.date)}</p>
+
+                            <button onClick={() => handleDelete(date_event.id)}><b>Delete</b></button>
+                        </div>
+                    
+                )
+            })}
+        </div>
+        </>
+
+    )
 }
 
 export default EventsLister

@@ -1,11 +1,11 @@
-import Calendar from "./Calendar"
 import "./Sidebar.css"
+import Form from "./Form"
 
 
-function Sidebar({renderDateEvents}){
+function Sidebar({eventsList, date_ds, setEvents}){
     return(
         <div id= "side">
-            {/* <Calendar /> */}
+            <Form eventsList={eventsList} setEvents={setEvents} date_ds={date_ds}/>
         </div>
     )
 }

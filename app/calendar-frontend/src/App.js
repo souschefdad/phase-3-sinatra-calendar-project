@@ -1,6 +1,6 @@
 
 import {useState, useEffect} from 'react';
-import './App.css';
+// import './App.css';
 import Form from './Form';
 import Sidebar from './Sidebar';
 import EventsLister from './EventsLister';
@@ -25,10 +25,8 @@ function App() {
 
   return (
     <div className="App">
-      Hello world
-      <Sidebar />
+      <Sidebar eventsList={events} date_ds={date_ds} setEvents={setEvents}/>
       {/* <h1>Calendar</h1> */}
-      <Form eventsList={events} setEvents={setEvents} date_ds={date_ds}/>
       <EventsLister date_ds={date_ds}/>
     </div>
   );

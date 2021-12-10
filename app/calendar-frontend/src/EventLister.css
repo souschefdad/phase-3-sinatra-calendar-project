@@ -1,0 +1,27 @@
+.event_cards {
+    /* align-content: center; */
+    background-color: #002776;
+    border-style:solid;
+    border-radius: 5px;
+    border-width: 5px;
+    border-color:#000000;
+    /* margin: auto; */
+    width: 500px;
+}
+
+.event_cards p {
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+    color:white;
+}
+
+.event_container { 
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    margin: 40px; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
