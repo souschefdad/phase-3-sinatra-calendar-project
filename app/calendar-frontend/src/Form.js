@@ -2,19 +2,36 @@ import React, { useState } from 'react';
 import './Form.css'
 
 
-function Form (){
+function Form ({eventsList, setEvents, date_ds}){
 
-    const[dateForm, setDateForm] = useState('')
+    const [dateForm, setDateForm] = useState('')
     const [name, setName] = useState("");
     const [country, setCountry] = useState("");
     const [location, setLocation] = useState("");
     const [type, setType] = useState("");
 
-    function handleSubmit(e){
-        e.preventDefault()
-        console.log(name, country, location, type, dateForm)
-    }
-
+    function handleSubmit(e) {
+        let dateArray = date_ds.filter(d => d.date === dateForm)
+        let dateId = (dateArray.map(d => d.id))[0]
+        e.preventDefault();
+        debugger
+        fetch("http://localhost:9292/event_list", {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+                body: JSON.stringify({
+                name: name,
+                country: country,
+                location: location,
+                holiday_type: type,
+                date_d_id: dateId,
+            }),
+            })
+            .then((r) => r.json())
+            .then((newEvent) => setEvents([...eventsList, newEvent]));
+        }
 
     return(
         <div className="form">

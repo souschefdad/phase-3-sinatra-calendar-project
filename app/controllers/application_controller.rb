@@ -1,3 +1,5 @@
+require 'pry'
+
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
@@ -15,6 +17,18 @@ class ApplicationController < Sinatra::Base
     'Events'
     all_events = Event.all
     all_events.to_json
+  end
+
+  post '/event_list' do
+    event = Event.create(
+    name:params[:name], 
+    country:params[:country], 
+    location:params[:location], 
+    holiday_type:params[:holiday_type],
+    date_d_id:params[:date_d_id]
+    )
+  
+    event.to_json(include: :date_d)
   end
 
 end
